@@ -1,0 +1,24 @@
+version: 2
+jobs:
+   build:
+     # default /home/circleci/project
+     working_directory: ~/cci20
+     
+     branches:
+       only:
+        - master
+
+     docker:
+       - image: circleci/java
+     
+     steps:
+       # yum installなど
+       - checkout
+       - run: echo "test start"
+       - run: pwd
+       - run: ls -l
+       - run: javac
+       - run: javac HelloWorld.java
+       - run: java HelloWorld
+       - store_artifacts:
+          path: ~/
